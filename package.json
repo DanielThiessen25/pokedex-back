@@ -8,6 +8,9 @@
     "build": "NODE_ENV=production npx tsc --outDir dist",
     "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/server.js",
     "dev": "NODE_ENV=development npx nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\"",
+    "postinstall": "tsc",
+    "watch-node": "nodemon dist/server.js",
+    "watch-ts": "tsc -w",
     "typeorm": "ts-node ./node_modules/typeorm/cli"
   },
   "keywords": [],
