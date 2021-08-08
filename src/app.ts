@@ -12,10 +12,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post("/sign-up", userController.createUser);
 
 export async function init () {
   await connectDatabase();
+
+app.post("/sign-up", userController.createUser);
 }
 
 export default app;
