@@ -32,8 +32,7 @@ export async function logUser (req: Request, res: Response){
   }
    const session = await userService.checkUser({email:email, password:password});
    if(session != null){
-     res.sendStatus(200);
-     res.send(session.token);
+     res.send(session.token).sendStatus(200);
    }
    else{
      res.sendStatus(401);
