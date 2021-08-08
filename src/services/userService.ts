@@ -2,8 +2,11 @@ import { Request, Response } from "express";
 
 import { getRepository } from "typeorm";
 import bcrypt from "bcrypt";
+import { v4 as uuid } from "uuid";
 
 import User from "../entities/User";
+import Session from "../entities/Session";
+import * as sessionService from "./sessionService";
 
 interface UserCreate {
   email: string;
@@ -16,4 +19,20 @@ export async function createUser (user: UserCreate) {
   const newUser = await getRepository(User).create(finalUser);
   await getRepository(User).save(newUser);
   return newUser;
+}
+
+export async function checkUser (user:UserCreate){
+    const emailedUser = await getRepository(User).find({ where: {
+      email: user.email 
+    }})
+    const realUser = emailedUser[0];
+    if(bcrypt.compareSync(user.password, realUser.password)){
+      const token = uuid();
+      const newSession = {userId:realUser.id, token:token};
+      const session = await sessionService.createSession(newSession);
+      return session;
+  }
+  else{
+    return null;
+  }
 }
