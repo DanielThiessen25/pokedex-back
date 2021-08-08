@@ -3,8 +3,14 @@
     "noImplicitAny": true,
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
+    "outDir": "dist",
+    "module": "commonjs",
+    "sourceMap": true,
     "experimentalDecorators": true
   },
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
     "node_modules",
     "tests"
