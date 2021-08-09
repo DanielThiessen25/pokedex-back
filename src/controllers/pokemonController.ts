@@ -27,9 +27,8 @@ export async function getAllPokemons (req: Request, res: Response) {
   export async function addPokemon (req:Request, res: Response){
     try{
         const addPokemon = await pokemonService.addPokemon(parseInt(req.params.id));
-        if(addPokemon != null){
-            return res.send(addPokemon).sendStatus(200);
-        }
+        return res.send(addPokemon).sendStatus(200);
+        
     } catch(err){
         console.error(err);
         res.sendStatus(500)
