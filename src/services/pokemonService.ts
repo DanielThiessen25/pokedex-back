@@ -28,3 +28,10 @@ export async function populate (finalPokemon: PokemonCreate) {
     return addPokemon;
   
   }
+
+  export async function addPokemon (pokemonId: number) {
+
+    const addPokemon = await getRepository(Pokemon).update({id:pokemonId},{inMyPokemons:true});
+    return addPokemon;
+  
+  }
