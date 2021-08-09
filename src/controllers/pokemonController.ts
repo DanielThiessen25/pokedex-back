@@ -37,7 +37,7 @@ export async function getAllPokemons (req: Request, res: Response) {
 
   export async function removePokemon (req:Request, res: Response){
     try{
-        await pokemonService.addPokemon(parseInt(req.params.id));
+        await pokemonService.removePokemon(parseInt(req.params.id));
         return res.sendStatus(200);
         
     } catch(err){
