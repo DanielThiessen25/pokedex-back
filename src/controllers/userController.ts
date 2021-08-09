@@ -15,8 +15,7 @@ function isValidEmail(email:string){
 export async function createUser (req: Request, res: Response) {
   try {
     const users = await userService.createUser(req.body);
-    res.sendStatus(201);
-    res.send(users);
+    res.send(users).sendStatus(201);
   } catch (err) {
     console.error(err);
     res.sendStatus(500);

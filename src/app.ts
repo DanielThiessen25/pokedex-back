@@ -21,6 +21,8 @@ export async function init () {
 app.post("/sign-up", userController.createUser);
 app.post("/login", userController.logUser);
 app.get("/pokemons",authenticate, pokemonController.getAllPokemons);
+app.post("/pokemons", authenticate, pokemonController.populatePokemons)
+app.post("/my-pokemons/:id/add",authenticate, pokemonController.populatePokemons);
 }
 
 export default app;
