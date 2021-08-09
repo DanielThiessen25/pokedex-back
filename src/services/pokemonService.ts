@@ -21,13 +21,20 @@ export async function getPokemons () {
   return pokemons;
 
 }
+let lista = [];
+function teste (resposta:any) {
+  lista = resposta.data.results;
+}
+
+
 
 export async function populate (finalPokemon: PokemonCreate) {
 
-  const connection = await axios.get(`https://pokeapi.co/api/v2/pokemon`);
-  const list = connection.data.results;
+  const connection = axios.get(`https://pokeapi.co/api/v2/pokemon`);
+  connection.then(teste);
+
   
-  return list.length;
+  return lista.length;
 
   
   }
