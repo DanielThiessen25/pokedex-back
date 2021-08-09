@@ -25,7 +25,7 @@ export async function getPokemons () {
 export async function populate (finalPokemon: PokemonCreate) {
 
   const connection = await axios.get(`https://pokeapi.co/api/v2/pokemon`);
-  const {list} = connection.data;
+  const list = connection.data.results;
   
   return list.length;
 
