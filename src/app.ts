@@ -22,7 +22,7 @@ app.post("/sign-up", userController.createUser);
 app.post("/login", userController.logUser);
 app.get("/pokemons",authenticate, pokemonController.getAllPokemons);
 app.post("/pokemons", authenticate, pokemonController.populatePokemons)
-app.post("/my-pokemons/:id/add",authenticate, pokemonController.populatePokemons);
+app.post("/my-pokemons/:id/add",authenticate, pokemonController.addPokemon);
 }
 
 export default app;
