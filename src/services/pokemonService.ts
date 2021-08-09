@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import { getRepository } from "typeorm";
+import axios from "axios";
 
 import Pokemon from "../entities/Pokemon";
 
@@ -23,8 +24,10 @@ export async function getPokemons () {
 
 export async function populate (finalPokemon: PokemonCreate) {
 
-    const addPokemon = await getRepository(Pokemon).create(finalPokemon);
-    await getRepository(Pokemon).save(addPokemon);
-    return addPokemon;
+  const connection = await axios.get(`https://pokeapi.co/api/v2/pokemon`);
+  const list = connection.data;
+  
+  return list.length;
+
   
   }
