@@ -36,3 +36,15 @@ export async function checkUser (user:UserCreate){
     return null;
   }
 }
+
+export async function isEmailUsed (email:string){
+  const emailedUser = await getRepository(User).find({ where: {
+    email: email 
+  }});
+  if(emailedUser === [] || emailedUser.length === 1){
+    return false;
+  }
+  else{
+    return true;
+  }
+}

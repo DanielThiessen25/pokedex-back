@@ -7,7 +7,7 @@ import * as pokemonService from "../services/pokemonService";
 export async function getAllPokemons (req: Request, res: Response) {
     try {
     const pokemons = await pokemonService.getPokemons();
-    return res.send(pokemons).sendStatus(200);
+    return res.send(pokemons);
     } catch (err) {
         console.error(err);
         res.sendStatus(500);

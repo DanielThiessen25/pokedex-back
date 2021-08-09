@@ -14,8 +14,14 @@ function isValidEmail(email:string){
 
 export async function createUser (req: Request, res: Response) {
   try {
+    const {email, password, confirmPassword} = req.body;
+    if(!isValidEmail(email) || password!= confirmPassword){
+      return res.sendStatus(400);
+  }
+    const checkEmail = await userService.isEmailUsed(email);
+    if(!checkEmail){return res.sendStatus(409)};
     const users = await userService.createUser(req.body);
-    res.send(users).sendStatus(201);
+    return res.sendStatus(201);
   } catch (err) {
     console.error(err);
     res.sendStatus(500);
@@ -31,7 +37,7 @@ export async function logUser (req: Request, res: Response){
   }
    const session = await userService.checkUser({email:email, password:password});
    if(session != null){
-     res.send(session.token).sendStatus(200);
+     res.send(session.token);
    }
    else{
      res.sendStatus(401);
