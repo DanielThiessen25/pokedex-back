@@ -34,3 +34,14 @@ export async function getAllPokemons (req: Request, res: Response) {
         res.sendStatus(500)
     }
   }
+
+  export async function removePokemon (req:Request, res: Response){
+    try{
+        await pokemonService.addPokemon(parseInt(req.params.id));
+        return res.sendStatus(200);
+        
+    } catch(err){
+        console.error(err);
+        res.sendStatus(500)
+    }
+  }

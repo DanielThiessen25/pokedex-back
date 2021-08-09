@@ -30,8 +30,9 @@ export async function populate (finalPokemon: PokemonCreate) {
   }
 
   export async function addPokemon (pokemonId: number) {
-
     await getRepository(Pokemon).update({id:pokemonId},{inMyPokemons:true});
+  }
 
-  
+  export async function removePokemon (pokemonId: number) {
+    await getRepository(Pokemon).update({id:pokemonId},{inMyPokemons:false});
   }
